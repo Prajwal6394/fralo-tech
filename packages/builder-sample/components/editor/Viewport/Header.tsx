@@ -20,7 +20,10 @@ const HeaderDiv = styled.div`
   background: #d4d4d4;
   display: flex;
 `;
-
+const randonFunction  =
+ (num1: number, num2: number) => {
+   return num1 + num2;
+ }
 const Btn = styled.a`
   display: flex;
   align-items: center;
