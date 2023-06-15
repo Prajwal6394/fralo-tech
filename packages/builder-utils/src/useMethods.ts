@@ -4,7 +4,7 @@ import {
   produceWithPatches,
   enableMapSet,
   enablePatches,
-  produce
+  produce,
 } from 'immer';
 import isEqualWith from 'lodash/isEqualWith';
 import { useMemo, useEffect, useRef, useCallback } from 'react';
@@ -33,47 +33,44 @@ export type StateFor<M extends MethodsOrOptions> = M extends MethodsOrOptions<
   ? S
   : never;
 
-export type CallbacksFor<
-  M extends MethodsOrOptions
-> = M extends MethodsOrOptions<any, infer R>
-  ? {
-      [T in ActionUnion<R>['type']]: (
-        ...payload: ActionByType<ActionUnion<R>, T>['payload']
-      ) => void;
-    } & {
-      history: {
-        undo: () => void;
-        redo: () => void;
-        clear: () => void;
-        throttle: (
-          rate?: number
-        ) => Delete<
-          {
-            [T in ActionUnion<R>['type']]: (
-              ...payload: ActionByType<ActionUnion<R>, T>['payload']
-            ) => void;
-          },
-          M extends Options ? M['ignoreHistoryForActions'][number] : never
-        >;
-        merge: () => Delete<
-          {
-            [T in ActionUnion<R>['type']]: (
-              ...payload: ActionByType<ActionUnion<R>, T>['payload']
-            ) => void;
-          },
-          M extends Options ? M['ignoreHistoryForActions'][number] : never
-        >;
-        ignore: () => Delete<
-          {
-            [T in ActionUnion<R>['type']]: (
-              ...payload: ActionByType<ActionUnion<R>, T>['payload']
-            ) => void;
-          },
-          M extends Options ? M['ignoreHistoryForActions'][number] : never
-        >;
-      };
-    }
-  : {};
+export type CallbacksFor<M extends MethodsOrOptions> =
+  M extends MethodsOrOptions<any, infer R>
+    ? {
+        [T in ActionUnion<R>['type']]: (
+          ...payload: ActionByType<ActionUnion<R>, T>['payload']
+        ) => void;
+      } & {
+        history: {
+          undo: () => void;
+          redo: () => void;
+          clear: () => void;
+          throttle: (rate?: number) => Delete<
+            {
+              [T in ActionUnion<R>['type']]: (
+                ...payload: ActionByType<ActionUnion<R>, T>['payload']
+              ) => void;
+            },
+            M extends Options ? M['ignoreHistoryForActions'][number] : never
+          >;
+          merge: () => Delete<
+            {
+              [T in ActionUnion<R>['type']]: (
+                ...payload: ActionByType<ActionUnion<R>, T>['payload']
+              ) => void;
+            },
+            M extends Options ? M['ignoreHistoryForActions'][number] : never
+          >;
+          ignore: () => Delete<
+            {
+              [T in ActionUnion<R>['type']]: (
+                ...payload: ActionByType<ActionUnion<R>, T>['payload']
+              ) => void;
+            },
+            M extends Options ? M['ignoreHistoryForActions'][number] : never
+          >;
+        };
+      }
+    : {};
 
 export type Methods<S = any, R extends MethodRecordBase<S> = any, Q = any> = (
   state: S,
@@ -203,7 +200,8 @@ export function useMethods<
     methodsFactory = methodsOrOptions;
   } else {
     methodsFactory = methodsOrOptions.methods;
-    ignoreHistoryForActionsRef.current = methodsOrOptions.ignoreHistoryForActions as any;
+    ignoreHistoryForActionsRef.current =
+      methodsOrOptions.ignoreHistoryForActions as any;
     normalizeHistoryRef.current = methodsOrOptions.normalizeHistory;
   }
 

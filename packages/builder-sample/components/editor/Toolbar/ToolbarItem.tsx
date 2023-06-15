@@ -14,7 +14,7 @@ export type ToolbarItemProps = {
   children?: React.ReactNode;
   type: string;
   onChange?: (value: any) => any;
-  radioValues?: RadioItemProps[]
+  radioValues?: RadioItemProps[];
 };
 export const ToolbarItem = ({
   full = false,
@@ -25,7 +25,7 @@ export const ToolbarItem = ({
   ...props
 }: ToolbarItemProps) => {
   if (!propKey) {
-    return (<></>)
+    return <></>;
   }
 
   const {
@@ -37,17 +37,20 @@ export const ToolbarItem = ({
 
   const value = Array.isArray(propValue) ? propValue[index] : propValue;
 
-  const sliderHandler = useCallback((_: ChangeEvent<object>, value: number | number[]): void => {
-    setProp((props: any) => {
-      if (Array.isArray(propValue)) {
-        props[propKey][index] = onChange ? onChange(value) : value;
-      } else {
-        props[propKey] = onChange ? onChange(value) : value;
-      }
-    }, 1000);
-  }, [index, onChange, propKey, propValue, setProp]);
+  const sliderHandler = useCallback(
+    (_: ChangeEvent<object>, value: number | number[]): void => {
+      setProp((props: any) => {
+        if (Array.isArray(propValue)) {
+          props[propKey][index] = onChange ? onChange(value) : value;
+        } else {
+          props[propKey] = onChange ? onChange(value) : value;
+        }
+      }, 1000);
+    },
+    [index, onChange, propKey, propValue, setProp]
+  );
 
-  console.log(`Here - `, value)
+  console.log(`Here - `, value);
 
   const radioChangeEvent = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const value = e.target.value;
@@ -93,11 +96,11 @@ export const ToolbarItem = ({
             {props.label ? (
               <h4 className="text-sm text-light-gray-2">{props.label}</h4>
             ) : null}
-              <FLRadioGroup
-                radioValues={props.radioValues}
-                onChange={radioChangeEvent2}
-                defaultIndex={0}
-              />
+            <FLRadioGroup
+              radioValues={props.radioValues}
+              onChange={radioChangeEvent2}
+              defaultIndex={0}
+            />
           </>
         ) : null}
       </div>

@@ -1,1 +1,1 @@
-export * from './FLSlider/FLSlider'
+export * from './FLSlider/FLSlider';

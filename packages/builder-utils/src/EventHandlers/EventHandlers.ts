@@ -98,10 +98,8 @@ export abstract class EventHandlers<O extends Record<string, any> = {}> {
     const activeConnectorIds: Set<string> = new Set();
 
     let canRegisterConnectors = false;
-    const connectorsToRegister: Map<
-      string,
-      () => RegisteredConnector
-    > = new Map();
+    const connectorsToRegister: Map<string, () => RegisteredConnector> =
+      new Map();
 
     const connectors = Object.entries(handlers).reduce<
       Record<string, Connector>

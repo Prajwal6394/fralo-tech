@@ -13,10 +13,10 @@ export const Primary = {
     defaultValue: '',
     defaultIndex: 0,
     radioValues: [
-      {label: 'Regular', value:"400"},
-      {label: 'Medium', value:"500"},
-      {label: 'Bold', value:"700"},
+      { label: 'Regular', value: '400' },
+      { label: 'Medium', value: '500' },
+      { label: 'Bold', value: '700' },
     ],
-    onChange: (value: string) => console.log(value)
+    onChange: (value: string) => console.log(value),
   },
 };

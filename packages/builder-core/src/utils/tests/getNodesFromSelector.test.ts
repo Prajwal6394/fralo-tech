@@ -1,10 +1,8 @@
 import { documentWithVariousNodes } from '../../tests/fixtures';
 import { getNodesFromSelector } from '../getNodesFromSelector';
 
-const {
-  'linked-node': linkedNode,
-  ...nodes
-} = documentWithVariousNodes.nodes as any;
+const { 'linked-node': linkedNode, ...nodes } =
+  documentWithVariousNodes.nodes as any;
 
 const getSelector = (node, exists) => ({ node, exists });
 

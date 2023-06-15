@@ -91,10 +91,10 @@ export const deserializeNode = (
     ).replace('%availableComponents%', Object.keys(resolver).join(', '))
   );
 
-  const { type, name, props } = (deserializeComp(
+  const { type, name, props } = deserializeComp(
     data,
     resolver
-  ) as unknown) as NodeData;
+  ) as unknown as NodeData;
 
   const { parent, custom, displayName, isCanvas, nodes, hidden } = nodeData;
 

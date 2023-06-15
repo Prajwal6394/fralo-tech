@@ -114,11 +114,7 @@ export const Header = () => {
             }}
           >
             {enabled ? 'Checkmark' : 'Customize'}
-            {enabled ? (
-              <AiOutlineCheck />
-            ) : (
-              <AiOutlineEdit />
-            )}
+            {enabled ? <AiOutlineCheck /> : <AiOutlineEdit />}
             {enabled ? 'Finish Editing' : 'Edit'}
           </Btn>
         </div>

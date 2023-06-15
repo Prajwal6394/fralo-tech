@@ -80,14 +80,14 @@ export const Toolbox = () => {
           </FLTooltip>
         </div>
         <div ref={(ref) => create(ref, <Button />)}>
-          <FLTooltip tooltipLabel='Button' side='right' delayDuration={100}>
+          <FLTooltip tooltipLabel="Button" side="right" delayDuration={100}>
             <Item className="m-2 pb-2 cursor-pointer block" move>
               <AiOutlineLink />
             </Item>
           </FLTooltip>
         </div>
         <div ref={(ref) => create(ref, <Video />)}>
-          <FLTooltip tooltipLabel='Video' side='right' delayDuration={100}>
+          <FLTooltip tooltipLabel="Video" side="right" delayDuration={100}>
             <Item className="m-2 pb-2 cursor-pointer block" move>
               <AiOutlineYoutube />
             </Item>
